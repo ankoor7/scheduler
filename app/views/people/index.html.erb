@@ -1,0 +1,14 @@
+<h1>People#index</h1>
+
+<% @people.each do |person| %>
+    <div>
+      <h2><%= person.name %></a></h2>
+      <p><%= person.email %></p>
+    <% unless person == current_user %>
+          <% if can? :destroy, Person %>
+            <%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <% end %>
+      <% end %>
+      </div>
+<% end %>
+

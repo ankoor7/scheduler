@@ -20,11 +20,17 @@ group :development do
   gem 'better_errors'
   gem 'meta_request'
   gem 'awesome_print'
-  gem 'rspec-rails', '~> 2.0'
 end
 
 group :testing do
   gem 'rspec-rails', '~> 2.0'
+  gem 'railroady'
+  gem 'pry-rails'
+  gem 'pry-debugger'
+  gem 'pry-stack_explorer'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  gem 'awesome_print'
 end
 # Gems used only for assets and not required
 # in production environments by default.

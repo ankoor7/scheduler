@@ -1,5 +1,7 @@
 Scheduler::Application.routes.draw do
 
+  resources :people
+
   resources :sessions, only: [:new, :create, :destroy]
   get '/login', to: 'sessions#new'
 

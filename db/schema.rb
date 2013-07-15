@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715113014) do
+ActiveRecord::Schema.define(:version => 20130715161509) do
 
   create_table "assignments", :force => true do |t|
     t.datetime "due_date"
@@ -77,9 +77,9 @@ ActiveRecord::Schema.define(:version => 20130715113014) do
 
   create_table "materials", :force => true do |t|
     t.string   "file"
-    t.string   "event_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "event_id"
   end
 
   create_table "people", :force => true do |t|
