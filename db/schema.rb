@@ -11,14 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715091750) do
+ActiveRecord::Schema.define(:version => 20130715113014) do
 
   create_table "assignments", :force => true do |t|
     t.datetime "due_date"
     t.string   "name"
-    t.text     "desription"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
+    t.integer  "event_id"
+    t.string   "file"
   end
 
   create_table "calendars", :force => true do |t|
@@ -26,6 +28,14 @@ ActiveRecord::Schema.define(:version => 20130715091750) do
     t.integer  "time_slot"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "email"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "courses", :force => true do |t|
@@ -48,12 +58,22 @@ ActiveRecord::Schema.define(:version => 20130715091750) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "teacher"
+    t.integer  "room_id"
   end
 
   create_table "events_people", :id => false, :force => true do |t|
     t.integer "person_id"
     t.integer "event_id"
   end
+
+  create_table "locations", :force => true do |t|
+    t.string   "address"
+    t.integer  "company_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "locations", ["company_id"], :name => "index_locations_on_company_id"
 
   create_table "materials", :force => true do |t|
     t.string   "file"
@@ -77,8 +97,9 @@ ActiveRecord::Schema.define(:version => 20130715091750) do
     t.string   "name"
     t.text     "address"
     t.integer  "size"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "location_id"
   end
 
 end

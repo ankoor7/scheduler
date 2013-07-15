@@ -1,7 +1,7 @@
-class Assignment < Material
+class Assignment <  ActiveRecord::Base
   include ActiveModel::Validations # Only inject validation features of models
-  attr_accessible :desription, :due_date, :name
+  attr_accessible :event_id, :file, :description, :due_date, :name
 
 
-  # belongs_to :event
+  has_one :event
 end
