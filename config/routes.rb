@@ -1,15 +1,9 @@
 Scheduler::Application.routes.draw do
-  get "courses/index"
 
-  get "courses/edit"
+  resources :sessions, only: [:new, :create, :destroy]
+  get '/login', to: 'sessions#new'
 
-  get "courses/new"
-
-  get "courses/update"
-
-  get "courses/create"
-
-  get "courses/destroy"
+  resources :courses
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
