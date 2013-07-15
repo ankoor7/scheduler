@@ -11,5 +11,11 @@ require 'spec_helper'
 #   end
 # end
 describe CoursesHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe ".add_event" do
+    it "should raise an ArgumentError if the supplied object is not an Event" do
+      @course = Course.new
+      @event = 'fake event'
+      expect{add_event(@event, @course)}.to raise_error(ArgumentError)
+      end
+    end
 end
