@@ -7,8 +7,35 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id='page'>
+    <div id='header'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">GA Skool</a>
+    <ul class="nav">
+                <% if current_user %>
+                  <li><%= link_to 'Agenda', outlines_agenda_path %></li>
+                  <% if current_user.role? 'admin' %>
+                    <li><%= link_to 'Dashboard', outlines_dashboard_path %></li>
+                  <% end %>
+                <% end %>
+    </ul>
+    <ul class="nav pull-right">
+                <% if current_user %>
+                  <li><%= link_to 'Logout', session_path(session), method: :delete, data: {confirm: 'Are you sure?'} %></li>
+                <% else %>
+                  <li><a href=<%=login_path%>>Login</a></li>
+                  <li><a href=<%=new_person_path%>>Register</a></li>
+                <% end %>
+    </ul>
+  </div>
+</div>
+    </div>
+    <div id='content'>
 
-<%= yield %>
+      <%= yield %>
 
-</body>
-</html>
+
+    </div>
+  </body>
+  </html>

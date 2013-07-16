@@ -32,7 +32,11 @@ group :testing do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'awesome_print'
+  gem 'database_cleaner'
+  gem 'shoulda'
+  gem 'capybara'
 end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

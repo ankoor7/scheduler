@@ -1,9 +1,17 @@
 Scheduler::Application.routes.draw do
 
+  get "outlines/agenda"
+
+  get "outlines/dashboard"
+
+  get '/login', to: 'sessions#new'
+  root to: 'courses#index'
+
   resources :people
+  resources :assignments
+  resources :events
 
   resources :sessions, only: [:new, :create, :destroy]
-  get '/login', to: 'sessions#new'
 
   resources :courses
 
