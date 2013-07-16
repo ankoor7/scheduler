@@ -11,6 +11,7 @@ gem 'rmagick'
 gem 'ransack'
 gem 'nested_form'
 gem 'seed_dump'
+gem "fog", "~> 1.3.1"
 
 group :development do
   gem 'railroady'
