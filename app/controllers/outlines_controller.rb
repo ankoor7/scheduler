@@ -5,9 +5,11 @@ class OutlinesController < ApplicationController
 
   @events_as_teacher = Event.where(teacher: current_user.id)
 
+  @pending_assignments = []
+
   end
 
   def dashboard
-    @events = Event.all
+    @events = Event.order("scheduled_date ASC")
   end
 end

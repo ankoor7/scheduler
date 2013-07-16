@@ -9,6 +9,7 @@ Scheduler::Application.routes.draw do
 
   resources :people
   resources :assignments
+  resources :materials
   resources :events
 
   resources :sessions, only: [:new, :create, :destroy]

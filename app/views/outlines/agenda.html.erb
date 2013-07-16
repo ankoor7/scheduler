@@ -1,43 +1,16 @@
 <h1>Agenda</h1>
 
-<% if @events_as_teacher %>
-  <h2>Teaching Schedule</h2>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Title</th>
-        <th>Room</th>
-        <th>Assignment</th>
-        <th>Material</th>
-        <th>Edit</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @events_as_teacher.each do |event| %>
-      <tr>
-        <td><%=event.date %></td>
-        <td><%=event.time_slot %></td>
-        <td><%=event.name %></td>
-        <td><%=event.room.name %></td>
-        <td>
-          <% if event.assignment %>
-            <%=link_to event.assignment.name, edit_assignment_path(event.assignment) %>
-          <% else %>
-            <%= link_to 'add assignment', new_assignment_path %>
-          <% end %>
-        </td>
-        <td>
-          <% if event.material %>
-            <%=link_to event.material.name, edit_material_path(event.material) %>
-          <% else %>
-            <%= link_to 'add material', new_material_path %>
-          <% end %>
-        </td>
-        <td><%= link_to 'edit', edit_event_path(event) %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+<% if @events_as_teacher.any? %>
+  <%= render 'teachers_events', events_as_teacher: @events_as_teacher %>
 <% end %>
+
+<% if @events_as_student.any? %>
+  <%= render 'students_events', events_as_student: @events_as_student %>
+<% end %>
+
+<% if @pending_assignments.any? %>
+  <%= render 'pending_assignments', pending_assignments: @pending_assignments %>
+<% end %>
+
+<!-- FUTURE FUNCTIONALITY -->
+<!-- List previous course materials -->

@@ -1,0 +1,35 @@
+  <h2>Your Classes</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Title</th>
+        <th>Room</th>
+        <th>Assignment</th>
+        <th>Material</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% events_as_student.each do |event| %>
+      <tr>
+        <td><%=event.scheduled_date %></td>
+        <td><%=event.time_slot %></td>
+        <td><%= link_to event.name, event %></td>
+        <td><%=event.room.name %></td>
+        <td>
+          <% if event.assignment %>
+            <%=link_to event.assignment.name, assignment_path(event.assignment) %>
+          <% end %>
+        </td>
+        <td>
+          <% if event.material %>
+            <%=link_to 'download', material_path(event.material) %>
+          <% end %>
+        </td>
+        <td><%= link_to 'unsubscribe', edit_event_path(event) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
