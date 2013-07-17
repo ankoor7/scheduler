@@ -1,3 +1,10 @@
 <h1>Create a class</h1>
 
+<div class='clearfix'>
+<div class='column-left clearfix'>
 <%= render 'form' %>
+</div>
+<div class='column-right clearfix'>
+  <%= render 'room_allocations', events: @events, date_range: @date_range, timeslots: @timeslots, rooms: @rooms  %>
+</div>
+</div>

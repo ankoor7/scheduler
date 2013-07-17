@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     next3month = Date.civil(now.year,now.month)..(Date.civil(now.year,now.month)+3.month)
     @timeslots = TimeSlot.all
     # date_range=params[:date_range]
-    @date_range=thismonth
+    @date_range=thisweek
     @events=Event.includes.where(scheduled_date: @date_range)
     @rooms=Room.all
   end
@@ -18,6 +18,15 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    now = Date.today
+    thisweek = Date.commercial(now.cwyear,now.cweek)..Date.commercial(now.cwyear,now.cweek+1)
+    thismonth = Date.civil(now.year,now.month)..(Date.civil(now.year,now.month)+1.month)
+    next3month = Date.civil(now.year,now.month)..(Date.civil(now.year,now.month)+3.month)
+    @timeslots = TimeSlot.all
+    # date_range=params[:date_range]
+    @date_range=thisweek
+    @events=Event.includes.where(scheduled_date: @date_range)
+    @rooms=Room.all
   end
 
   def create
@@ -32,6 +41,15 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    now = Date.today
+    thisweek = Date.commercial(now.cwyear,now.cweek)..Date.commercial(now.cwyear,now.cweek+1)
+    thismonth = Date.civil(now.year,now.month)..(Date.civil(now.year,now.month)+1.month)
+    next3month = Date.civil(now.year,now.month)..(Date.civil(now.year,now.month)+3.month)
+    @timeslots = TimeSlot.all
+    # date_range=params[:date_range]
+    @date_range=thisweek
+    @events=Event.includes.where(scheduled_date: @date_range)
+    @rooms=Room.all
   end
 
   def update

@@ -6,32 +6,37 @@
   </ul>
 
 
-<!--   <h2>Date range</h2>
-  <ul class="" id="">
-    <li><a href="#" value="now">all</a></li>
-    <li><a href="#" data-filter-value=".bigger-than">Bigger than a breadbox</a></li>
-    <li><a href="#" data-filter-value=".smaller-than">Smaller than a breadbox</a></li>
+   <h2>Rooms</h2>
+  <ul class="filter option-set" data-filter-group="breadbox">
+    <li><a href="#" data-filter-value="">all</a></li>
+    <% rooms.each do |r| %>
+      <li><a href="#" data-filter-value=".<%= r.name.gsub(/ /, '_' ) %>"><%= r.name %></a></li>
+    <% end %>
   </ul>
--->
+
 
 <div id="things">
   <!-- ADD EVENTS HERE -->
   <% date_range.each do |d| %>
   <% timeslots.each do |t| %>
-  <div class="event_box thing
-  <% if events.select{|e| e[:scheduled_date] == d }.any?  %>
+  <% rooms.each do |r| %>
+  <div class="event_box thing <%= r.name.gsub(/ /, '_' ) %>
+  <% if events.select{|e| e.scheduled_date == d && e.time_slot == t.id.to_s }.any?  %>
   <%= "full" %>
   <% else %>
   <%= "empty" %>
   <% end %>
   " >
-  <%= d.strftime("%a %b %C") %>
-  <%= t.name %>
-  <% events.select {|e| e[:scheduled_date] == d }.each do |event| %>
-  <%= event.name %>
-  <%= event.description %>
+  <% @day = (d.strftime("%e").to_i).ordinalize %>
+  <%= "#{r.name} (#{r.size})" %><br>
+  <%= d.strftime("%a, #{@day} %b '%y") %><br>
+  <%= t.name %> <br>
+  <% events.select {|e| e.scheduled_date == d && e.time_slot == t.id.to_s }.each do |event| %>
+  <h5><%= event.name %></h5>
+  <p><%= event.description %><p>
   <% end %>
 </div>
+<% end %>
 <% end %>
 <% end %>
 
