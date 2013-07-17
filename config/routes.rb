@@ -5,7 +5,7 @@ Scheduler::Application.routes.draw do
   get "outlines/dashboard"
 
   get '/login', to: 'sessions#new'
-  root to: 'courses#index'
+  root to: 'events#index'
 
   resources :people
   resources :assignments

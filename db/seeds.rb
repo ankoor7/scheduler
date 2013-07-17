@@ -29,7 +29,8 @@ Course.create([
 
 
 Event.create([
-  { :date => "2013-07-15", :time_slot => "1", :name => "Test Event", :description => nil, :created_at => "2013-07-13 18:12:35", :updated_at => "2013-07-15 09:25:06", :teacher => 1, :room_id => nil }
+  { :scheduled_date => "2013-07-15", :time_slot => "1", :name => "Test Event", :description => nil, :created_at => "2013-07-13 18:12:35", :updated_at => "2013-07-16 09:09:29", :teacher => 1, :room_id => 1 },
+  { :scheduled_date => "2013-07-16", :time_slot => "2", :name => "Test Event 2", :description => "test", :created_at => "2013-07-16 09:39:14", :updated_at => "2013-07-16 09:39:14", :teacher => 2, :room_id => 2 }
 ], :without_protection => true )
 
 
@@ -57,6 +58,15 @@ Person.create([
 Room.create([
   { :name => "test room", :address => "test room", :size => 20, :created_at => "2013-07-15 16:07:13", :updated_at => "2013-07-15 16:07:13", :location_id => 1 },
   { :name => "test room 2", :address => "next to test room", :size => 30, :created_at => "2013-07-15 16:08:05", :updated_at => "2013-07-15 16:08:05", :location_id => 1 }
+], :without_protection => true )
+
+
+
+TimeSlot.create([
+  { :name => "09:00 - 12:00", :created_at => "2013-07-16 15:44:20", :updated_at => "2013-07-16 15:44:20" },
+  { :name => "13:00 - 15:00", :created_at => "2013-07-16 15:44:44", :updated_at => "2013-07-16 15:44:44" },
+  { :name => "15:00 - 17:00", :created_at => "2013-07-16 15:44:57", :updated_at => "2013-07-16 15:44:57" },
+  { :name => "19:00 - 21:00", :created_at => "2013-07-16 15:45:09", :updated_at => "2013-07-16 15:45:09" }
 ], :without_protection => true )
 
 

@@ -1,12 +1,12 @@
 class Event < ActiveRecord::Base
-  attr_accessible :date, :description, :name, :time_slot, :teacher, :people, :room_id
+  attr_accessible :scheduled_date, :description, :name, :time_slot, :teacher, :people, :room_id
   has_and_belongs_to_many :courses
   has_and_belongs_to_many :people
   has_one :assignment
   has_one :material
   belongs_to :room
 
-  validates :name, :date, :time_slot, presence: true
+  validates :name, :scheduled_date, :time_slot, presence: true
   validates :name, length: { minimum: 2 }
 
 

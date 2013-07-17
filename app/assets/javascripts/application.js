@@ -13,3 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$('#container').isotope({
+  // options
+  itemSelector : '.item',
+  layoutMode : 'fitRows'
+});

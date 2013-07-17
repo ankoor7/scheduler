@@ -1,0 +1,38 @@
+  <h2>Room Allocations</h2>
+  <ul class="filter option-set" data-filter-group="category">
+    <li><a href="#" data-filter-value="">all</a></li>
+    <li><a href="#" data-filter-value=".full">full</a></li>
+    <li><a href="#" data-filter-value=".empty">empty</a></li>
+  </ul>
+
+
+<!--   <h2>Date range</h2>
+  <ul class="" id="">
+    <li><a href="#" value="now">all</a></li>
+    <li><a href="#" data-filter-value=".bigger-than">Bigger than a breadbox</a></li>
+    <li><a href="#" data-filter-value=".smaller-than">Smaller than a breadbox</a></li>
+  </ul>
+-->
+
+<div id="things">
+  <!-- ADD EVENTS HERE -->
+  <% date_range.each do |d| %>
+  <% timeslots.each do |t| %>
+  <div class="event_box thing
+  <% if events.select{|e| e[:scheduled_date] == d }.any?  %>
+  <%= "full" %>
+  <% else %>
+  <%= "empty" %>
+  <% end %>
+  " >
+  <%= d.strftime("%a %b %C") %>
+  <%= t.name %>
+  <% events.select {|e| e[:scheduled_date] == d }.each do |event| %>
+  <%= event.name %>
+  <%= event.description %>
+  <% end %>
+</div>
+<% end %>
+<% end %>
+
+</div>

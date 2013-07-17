@@ -12,4 +12,8 @@ class OutlinesController < ApplicationController
   def dashboard
     @events = Event.order("scheduled_date ASC")
   end
+
+  def room_allocations
+  end
+
 end
