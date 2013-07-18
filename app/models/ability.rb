@@ -7,7 +7,7 @@ class Ability
        user ||= Person.new # guest user (not logged in)
       if user.role? 'admin'
         can :manage, :all
-      elsif user.role? 'user'
+      elsif user.role? 'teacher'
         can [:create,:new,:index,:show], Event
         can :edit, Event, :active => true, :teacher => user.id
         can [:index,:show], [Course, Company, Location]
@@ -17,6 +17,10 @@ class Ability
 
       can :register_user, Event do |e|
         (( e.person_ids.exclude?(user.id) ) || ( user.id != e.teacher.to_i ))
+      end
+
+      can :deregister_user, Event do |e|
+        e.person_ids.include?(user.id)
       end
 
       # cannot :register_user, Event, :active => true, :teacher => user.id

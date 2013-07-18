@@ -11,7 +11,6 @@ class Event < ActiveRecord::Base
 
 
   def add_student student
-    binding.pry
     raise ArgumentError if student.class != Person
     if ensure_person_is_not_registered student
       people << student

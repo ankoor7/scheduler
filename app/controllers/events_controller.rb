@@ -30,7 +30,7 @@ load_and_authorize_resource
   def deregister_user
     @event = Event.find(params[:id])
     @event.remove_student current_user
-      redirect_to root
+    redirect_to root_path
   end
 
 
