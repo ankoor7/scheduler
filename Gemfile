@@ -12,6 +12,7 @@ gem 'ransack'
 gem 'nested_form'
 gem 'seed_dump'
 gem "fog", "~> 1.3.1"
+gem "dynamic_sitemaps", "2.0.0.beta2"
 
 group :development do
   gem 'railroady'
