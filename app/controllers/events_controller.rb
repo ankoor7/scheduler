@@ -13,7 +13,7 @@ load_and_authorize_resource
 
   def show
     @event = Event.find(params[:id])
-
+    @timeslots = TimeSlot.all
   end
 
   def register_user
@@ -49,7 +49,12 @@ load_and_authorize_resource
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else
-      render action: "new"
+      now = Date.today
+      @timeslots = TimeSlot.all
+      @date_range=Date.commercial(now.cwyear,now.cweek)..Date.commercial(now.cwyear,now.cweek+1)
+      @events=Event.thisweek
+      @rooms=Room.all
+      redirect_to action: "new"
     end
   end
 
@@ -68,6 +73,11 @@ load_and_authorize_resource
     if @event.update_attributes(params[:event])
       redirect_to @event, notice: 'Event was successfully updated.'
     else
+      now = Date.today
+      @timeslots = TimeSlot.all
+      @date_range=Date.commercial(now.cwyear,now.cweek)..Date.commercial(now.cwyear,now.cweek+1)
+      @events=Event.thisweek
+      @rooms=Room.all
       render action: "edit", notice: 'Event was not updated.'
     end
   end

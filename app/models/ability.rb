@@ -15,13 +15,22 @@ class Ability
         can [:index,:show], [Event, Course, Company, Location]
       end
 
-      can :register_user, Event do |e|
-        (( e.person_ids.exclude?(user.id) ) || ( user.id != e.teacher.to_i ))
-      end
+      # can :register_user, Event do |e|
+      #   (( e.person_ids.exclude?(user.id) ) && ( user.id != e.teacher.to_i ))
+      # end
+      can :register_user, Event
 
-      can :deregister_user, Event do |e|
+      cannot :register_user, Event do |e|
         e.person_ids.include?(user.id)
       end
+      cannot :register_user, Event do |e|
+        user.id == e.teacher.to_i
+      end
+
+      cannot :deregister_user, Event do |e|
+        e.person_ids.exclude?(user.id)
+      end
+
 
       # cannot :register_user, Event, :active => true, :teacher => user.id
       # cannot :register_user, Event, :active => true, :people.include? user.id

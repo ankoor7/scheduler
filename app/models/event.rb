@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
 
   validates :name, :scheduled_date, :time_slot, presence: true
   validates :name, length: { minimum: 2 }
+  validates_uniqueness_of :scheduled_date, :scope => [:time_slot, :room_id]
 
 
   def add_student student

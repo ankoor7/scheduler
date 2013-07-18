@@ -27,6 +27,12 @@
   <%= f.label :email %>
   <%= f.text_field :email %>
 </div>
+<% if current_user.role? 'admin' %>
+  <div class="field">
+    <%= f.label :role %>
+    <%= f.text_field :role %>
+  </div>
+<% end %>
 <div class="field">
   <%= f.label :password %>
   <%= f.password_field :password %>

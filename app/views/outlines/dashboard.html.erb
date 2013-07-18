@@ -4,3 +4,6 @@
   <%= render 'dashboard_events', events: @events %>
 <% end %>
 
+<% if @users.any? %>
+  <%= render 'dashboard_users', users: @users %>
+<% end %>

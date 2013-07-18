@@ -10,6 +10,7 @@ class OutlinesController < ApplicationController
 
   def dashboard
     @events = Event.order("scheduled_date ASC")
+    @users = Person.order(:name)
   end
 
   def room_allocations

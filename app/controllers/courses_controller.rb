@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
     # @courses = @q.result(distinct: true)
     @courses = Course.all
     @events = Event.all
+    @timeslots = TimeSlot.all
   end
 
   def show

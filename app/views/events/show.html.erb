@@ -1,16 +1,20 @@
 <h1><%=@event.name%></h1>
-
+<ul>
+<li>Location: <%= @event.room.location.address %></li>
+<li>Time: <%= @timeslots.find(@event.time_slot.to_i).first.name %></li>
+  <% @day = (@event.scheduled_date.strftime("%e").to_i).ordinalize %>
+<li>Date: <%= @event.scheduled_date.strftime("%a, #{@day} %b '%y") %></li>
+  </ul>
 
 <p><%=@event.description%></p>
 
 <% if current_user %>
     <% if can? :register_user, @event %>
-      <% if @event.person_ids.include? current_user.id %>
-        <%= link_to "Unregister for #{@event.name}", deregister_url %>
-      <% else %>
         <%= link_to "Register for #{@event.name}", register_url %>
         <% session[:return_to] = request.referer %>
-      <% end %>
+    <% end %>
+    <% if can? :deregister_user, @event %>
+        <%= link_to "Unregister for #{@event.name}", deregister_url %>
     <% end %>
   <% else %>
     <%= link_to 'Register with GA', new_person_path %>

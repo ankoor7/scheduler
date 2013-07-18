@@ -30,7 +30,10 @@ Course.create([
 
 Event.create([
   { :scheduled_date => "2013-07-15", :time_slot => "1", :name => "Test Event", :description => nil, :created_at => "2013-07-13 18:12:35", :updated_at => "2013-07-16 09:09:29", :teacher => 1, :room_id => 1 },
-  { :scheduled_date => "2013-07-16", :time_slot => "2", :name => "Test Event 2", :description => "test", :created_at => "2013-07-16 09:39:14", :updated_at => "2013-07-16 09:39:14", :teacher => 2, :room_id => 2 }
+  { :scheduled_date => "2013-07-16", :time_slot => "2", :name => "Test Event 2", :description => "test", :created_at => "2013-07-16 09:39:14", :updated_at => "2013-07-16 09:39:14", :teacher => 2, :room_id => 2 },
+  { :scheduled_date => "2013-07-19", :time_slot => "1", :name => "test", :description => "test", :created_at => "2013-07-16 17:38:30", :updated_at => "2013-07-16 17:38:30", :teacher => 2, :room_id => 1 },
+  { :scheduled_date => "2013-07-18", :time_slot => "2", :name => "test", :description => "test12", :created_at => "2013-07-16 17:44:49", :updated_at => "2013-07-16 17:44:49", :teacher => 2, :room_id => 2 },
+  { :scheduled_date => "2013-08-01", :time_slot => "4", :name => "fill the gap", :description => "wew", :created_at => "2013-07-18 19:05:21", :updated_at => "2013-07-18 19:05:21", :teacher => 2, :room_id => 1 }
 ], :without_protection => true )
 
 
@@ -50,7 +53,9 @@ Material.create([
 Person.create([
   { :name => "Ankoor", :surname => "Patel", :email => "ankoor.p@gmail.com", :password_digest => nil, :phone => nil, :created_at => "2013-07-15 09:18:45", :updated_at => "2013-07-15 09:18:45", :role => "admin" },
   { :name => "Admin", :surname => "Admin", :email => "ankoor.p+test@gmail.com", :password_digest => "$2a$10$sSv.uw9t2N.N/Od8nek8yOsEk.w8XIT2OaePDEfh1MtqIv1Tgm5Lm", :phone => "", :created_at => "2013-07-15 15:52:00", :updated_at => "2013-07-15 16:00:50", :role => "admin" },
-  { :name => "Test User", :surname => "test", :email => "ankoor.p+testuser@gmail.com", :password_digest => "$2a$10$nM2PyxoimSNLCldrg08aoeRSe6uT7EGT9HByF6VT6Lrf3soV3CIH6", :phone => "099", :created_at => "2013-07-15 16:02:42", :updated_at => "2013-07-15 16:02:42", :role => "user" }
+  { :name => "Test User", :surname => "test", :email => "ankoor.p+testuser@gmail.com", :password_digest => "$2a$10$nM2PyxoimSNLCldrg08aoeRSe6uT7EGT9HByF6VT6Lrf3soV3CIH6", :phone => "099", :created_at => "2013-07-15 16:02:42", :updated_at => "2013-07-15 16:02:42", :role => "user" },
+  { :name => "new", :surname => "fdf", :email => "e@gmail.com", :password_digest => "$2a$10$i1QJr8uaiDcsROWpmFdzruvqhUvWrsRImKoHrWa4KJMLlwtXOnRLm", :phone => "ds", :created_at => "2013-07-18 13:37:08", :updated_at => "2013-07-18 13:37:08", :role => "user" },
+  { :name => "fdd", :surname => "f", :email => "f@gmail.com", :password_digest => "$2a$10$O.Fc4nXxsScsfb0iGU8D6.57QMHnc2Ho9crPGG3/xWnmEU.QWrTNu", :phone => "f", :created_at => "2013-07-18 13:40:21", :updated_at => "2013-07-18 18:34:43", :role => "teacher" }
 ], :without_protection => true )
 
 

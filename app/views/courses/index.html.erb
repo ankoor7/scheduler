@@ -8,7 +8,7 @@
   <% @day = (e.scheduled_date.strftime("%e").to_i).ordinalize %>
   <h2><%= e.name %></h2>
   Date: <%= e.scheduled_date.strftime("%a, #{@day} %b '%y") %><br>
-  Time: <%= e.time_slot %> <br>
+  Time: <%= @timeslots.find(e.time_slot.to_i).first.name  %> <br>
   <p><%= e.description %><p>
   </div>
 </a>

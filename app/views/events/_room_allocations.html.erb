@@ -1,16 +1,16 @@
   <h2>Room Allocations</h2>
   <ul class="filter option-set" data-filter-group="category">
-    <li><a href="#" data-filter-value="">all</a></li>
-    <li><a href="#" data-filter-value=".full">full</a></li>
-    <li><a href="#" data-filter-value=".empty">empty</a></li>
+    <a href="#" data-filter-value=""><li>all</li></a>
+    <a href="#" data-filter-value=".full"><li>full</li></a>
+    <a href="#" data-filter-value=".empty"><li>empty</li></a>
   </ul>
 
 
    <h2>Rooms</h2>
   <ul class="filter option-set" data-filter-group="breadbox">
-    <li><a href="#" data-filter-value="">all</a></li>
+    <a href="#" data-filter-value=""><li>all</li></a>
     <% rooms.each do |r| %>
-      <li><a href="#" data-filter-value=".<%= r.name.gsub(/ /, '_' ) %>"><%= r.name %></a></li>
+      <a href="#" data-filter-value=".<%= r.name.gsub(/ /, '_' ) %>"><li><%= r.name %></li></a>
     <% end %>
   </ul>
 
@@ -21,7 +21,7 @@
   <% timeslots.each do |t| %>
   <% rooms.each do |r| %>
   <div class="event_box thing <%= r.name.gsub(/ /, '_' ) %>
-  <% if events.select{|e| e.scheduled_date == d && e.time_slot == t.id.to_s }.any?  %>
+  <% if events.select{|e| e.scheduled_date == d && e.time_slot == t.id.to_s && e.room_id == r.id }.any?  %>
   <%= "full" %>
   <% else %>
   <%= "empty" %>
@@ -31,7 +31,7 @@
   Room: <%= "#{r.name} (#{r.size})" %><br>
   Date: <%= d.strftime("%a, #{@day} %b '%y") %><br>
   Time: <%= t.name %> <br>
-  <% events.select {|e| e.scheduled_date == d && e.time_slot == t.id.to_s }.each do |event| %>
+  <% events.select {|e| e.scheduled_date == d && e.time_slot == t.id.to_s && e.room_id == r.id  }.each do |event| %>
   <h5><%= event.name %></h5>
   <p><%= event.description %><p>
   <% end %>
