@@ -15,7 +15,7 @@
       <% events_as_student.each do |event| %>
       <tr>
         <td><%=event.scheduled_date %></td>
-        <td><%=event.time_slot %></td>
+        <td><%= timeslots.find(event.time_slot.to_i).first.name %></td>
         <td><%= link_to event.name, event %></td>
         <td><%=event.room.name %></td>
         <td>

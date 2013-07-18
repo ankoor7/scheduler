@@ -1,7 +1,7 @@
 <h1>Dashboard</h1>
 
 <% if @events.any? %>
-  <%= render 'dashboard_events', events: @events %>
+  <%= render 'dashboard_events', events: @events, timeslots: @timeslots %>
 <% end %>
 
 <% if @users.any? %>

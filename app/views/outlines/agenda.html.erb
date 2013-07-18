@@ -1,11 +1,11 @@
 <h1>Agenda</h1>
 
 <% if @events_as_teacher.any? %>
-  <%= render 'teachers_events', events_as_teacher: @events_as_teacher %>
+  <%= render 'teachers_events', events_as_teacher: @events_as_teacher, timeslots: @timeslots %>
 <% end %>
 
 <% if @events_as_student.any? %>
-  <%= render 'students_events', events_as_student: @events_as_student %>
+  <%= render 'students_events', events_as_student: @events_as_student, timeslots: @timeslots %>
 <% end %>
 
 <% if @pending_assignments.any? %>
