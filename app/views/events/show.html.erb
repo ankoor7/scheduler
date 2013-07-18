@@ -4,7 +4,6 @@
 <p><%=@event.description%></p>
 
 <% if current_user %>
-  <% binding.pry %>
     <% if can? :register_user, @event %>
       <% if @event.person_ids.include? current_user.id %>
         <%= link_to "Unregister for #{@event.name}", deregister_url %>

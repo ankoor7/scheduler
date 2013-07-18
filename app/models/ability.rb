@@ -16,7 +16,6 @@ class Ability
       end
 
       can :register_user, Event do |e|
-        binding.pry
         (( e.person_ids.exclude?(user.id) ) || ( user.id != e.teacher.to_i ))
       end
 
