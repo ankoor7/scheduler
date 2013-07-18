@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
   def index
     # @courses = @q.result(distinct: true)
     @courses = Course.all
+    @events = Event.all
   end
 
   def show

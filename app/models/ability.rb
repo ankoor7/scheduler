@@ -4,17 +4,24 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
-       user ||= User.new # guest user (not logged in)
+       user ||= Person.new # guest user (not logged in)
       if user.role? 'admin'
         can :manage, :all
-      elsif user.role? 'teacher'
-        # can :read, :all
+      elsif user.role? 'user'
         can [:create,:new,:index,:show], Event
         can :edit, Event, :active => true, :teacher => user.id
-        can [:index,:show], Course, Company, Location
+        can [:index,:show], [Course, Company, Location]
       else
-        can [:index,:show], Event, Course, Company, Location
+        can [:index,:show], [Event, Course, Company, Location]
       end
+
+      can :register_user, Event do |e|
+        binding.pry
+        (( e.person_ids.exclude?(user.id) ) || ( user.id != e.teacher.to_i ))
+      end
+
+      # cannot :register_user, Event, :active => true, :teacher => user.id
+      # cannot :register_user, Event, :active => true, :people.include? user.id
 
    #   user ||= User.new # guest user (not logged in)
     #   if user.admin?

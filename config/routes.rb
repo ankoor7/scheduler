@@ -3,9 +3,11 @@ Scheduler::Application.routes.draw do
   get "outlines/agenda"
 
   get "outlines/dashboard"
+  get "events/:id/register", to: 'events#register_user', :as => :register
+  get "events/:id/deregister", to: 'events#deregister_user', :as => :deregister
 
   get '/login', to: 'sessions#new'
-  root to: 'events#index'
+  root to: 'courses#index'
 
   resources :people
   resources :assignments

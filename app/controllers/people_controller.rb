@@ -15,7 +15,8 @@ class PeopleController < ApplicationController
     @person = Person.new(params[:person])
     @person.role = 'user'
     if @person.save
-      redirect_to @person, notice: "#{@person.name} was successfully registered."
+      session[:user_id] = @person.id
+      redirect_to (stored_location || @person), notice: "#{@person.name} was successfully registered."
     else
       render action: "new"
     end

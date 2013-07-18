@@ -28,7 +28,7 @@
             <%=link_to 'download', material_path(event.material) %>
           <% end %>
         </td>
-        <td><%= link_to 'unsubscribe', edit_event_path(event) %></td>
+        <td><%= link_to "Unregister", deregister_url(event) %></td>
       </tr>
       <% end %>
     </tbody>

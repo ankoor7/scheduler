@@ -28,9 +28,9 @@
   <% end %>
   " >
   <% @day = (d.strftime("%e").to_i).ordinalize %>
-  <%= "#{r.name} (#{r.size})" %><br>
-  <%= d.strftime("%a, #{@day} %b '%y") %><br>
-  <%= t.name %> <br>
+  Room: <%= "#{r.name} (#{r.size})" %><br>
+  Date: <%= d.strftime("%a, #{@day} %b '%y") %><br>
+  Time: <%= t.name %> <br>
   <% events.select {|e| e.scheduled_date == d && e.time_slot == t.id.to_s }.each do |event| %>
   <h5><%= event.name %></h5>
   <p><%= event.description %><p>

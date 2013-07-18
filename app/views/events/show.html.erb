@@ -1,2 +1,18 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<h1><%=@event.name%></h1>
+
+
+<p><%=@event.description%></p>
+
+<% if current_user %>
+  <% binding.pry %>
+    <% if can? :register_user, @event %>
+      <% if @event.person_ids.include? current_user.id %>
+        <%= link_to "Unregister for #{@event.name}", deregister_url %>
+      <% else %>
+        <%= link_to "Register for #{@event.name}", register_url %>
+        <% session[:return_to] = request.referer %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= link_to 'Register with GA', new_person_path %>
+<% end %>

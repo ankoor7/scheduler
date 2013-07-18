@@ -1,2 +1,17 @@
-<h1>Courses#index</h1>
-<p>Find me in app/views/courses/index.html.erb</p>
+<h1>GA Courses</h1>
+
+<div id="things">
+  <!-- ADD EVENTS HERE -->
+  <% @events.each do |e| %>
+  <a href="<%= event_path(e) %>">
+  <div class="presentation_box thing" >
+  <% @day = (e.scheduled_date.strftime("%e").to_i).ordinalize %>
+  <h2><%= e.name %></h2>
+  Date: <%= e.scheduled_date.strftime("%a, #{@day} %b '%y") %><br>
+  Time: <%= e.time_slot %> <br>
+  <p><%= e.description %><p>
+  </div>
+</a>
+<% end %>
+
+</div>

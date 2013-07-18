@@ -1,30 +1,44 @@
 class EventsController < ApplicationController
+
+load_and_authorize_resource
+
   def index
     # @events = Event.all
-    now = Date.today
-    thisweek = Date.commercial(now.cwyear,now.cweek)..Date.commercial(now.cwyear,now.cweek+1)
-    thismonth = Date.civil(now.year,now.month)..(Date.civil(now.year,now.month)+1.month)
-    next3month = Date.civil(now.year,now.month)..(Date.civil(now.year,now.month)+3.month)
+   now = Date.today
     @timeslots = TimeSlot.all
-    # date_range=params[:date_range]
-    @date_range=thisweek
+    @date_range=Date.commercial(now.cwyear,now.cweek)..Date.commercial(now.cwyear,now.cweek+1)
     @events=Event.includes.where(scheduled_date: @date_range)
     @rooms=Room.all
   end
 
   def show
     @event = Event.find(params[:id])
+
   end
+
+  def register_user
+    @event = Event.find(params[:id])
+    if current_user
+      @event.add_student current_user
+      redirect_to (stored_location || root_path )
+    else
+      param[:redirect] = event.id
+      redirect_to login_path
+    end
+  end
+
+  def deregister_user
+    @event = Event.find(params[:id])
+    @event.remove_student current_user
+      redirect_to root
+  end
+
 
   def new
     @event = Event.new
     now = Date.today
-    thisweek = Date.commercial(now.cwyear,now.cweek)..Date.commercial(now.cwyear,now.cweek+1)
-    thismonth = Date.civil(now.year,now.month)..(Date.civil(now.year,now.month)+1.month)
-    next3month = Date.civil(now.year,now.month)..(Date.civil(now.year,now.month)+3.month)
     @timeslots = TimeSlot.all
-    # date_range=params[:date_range]
-    @date_range=thisweek
+    @date_range=Date.commercial(now.cwyear,now.cweek)..Date.commercial(now.cwyear,now.cweek+1)
     @events=Event.includes.where(scheduled_date: @date_range)
     @rooms=Room.all
   end
@@ -42,13 +56,9 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
     now = Date.today
-    thisweek = Date.commercial(now.cwyear,now.cweek)..Date.commercial(now.cwyear,now.cweek+1)
-    thismonth = Date.civil(now.year,now.month)..(Date.civil(now.year,now.month)+1.month)
-    next3month = Date.civil(now.year,now.month)..(Date.civil(now.year,now.month)+3.month)
     @timeslots = TimeSlot.all
-    # date_range=params[:date_range]
-    @date_range=thisweek
-    @events=Event.includes.where(scheduled_date: @date_range)
+    @date_range=Date.commercial(now.cwyear,now.cweek)..Date.commercial(now.cwyear,now.cweek+1)
+    @events=Event.thisweek
     @rooms=Room.all
   end
 
