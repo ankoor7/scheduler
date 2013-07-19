@@ -1,4 +1,4 @@
-// jquery-isotope-example.js
+// jquery-isotope-rooms.js
 
 $(document).ready(init);
 
