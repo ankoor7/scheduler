@@ -68,7 +68,7 @@ load_and_authorize_resource
   end
 
   def update
-    @event = Course.find(params[:event])
+    @event = Event.find(params[:id])
     @event.scheduled_date=Date.new(params[:scheduled_date][:year].to_i,params[:scheduled_date][:month].to_i,params[:scheduled_date][:day].to_i)
     if @event.update_attributes(params[:event])
       redirect_to @event, notice: 'Event was successfully updated.'
